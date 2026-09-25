@@ -10,7 +10,7 @@ public class Animale {
         this.eta = 0;
         this.energia = 0;
     }
-    
+
     public Animale(String n, String s, int anni, int ene) {
         if(n != null){
             this.nome = n;
@@ -67,16 +67,22 @@ public class Animale {
     }
 
     public void gioca(int quantita) {
-        if(this.energia - quantita >= 5){
-            this.energia -= quantita;
-        } else {
+        if(quantita < 0){
+            return;
+        }
+        if(quantita > this.energia){
             this.energia = 0;
+        } else {
+            this.energia -= quantita;
         }
     }
 
-    public void mangia(int quantità){
-        if(this.energia + quantità <= 100){
-            this.energia += quantità;
+    public void mangia(int quantita){
+        if(quantita < 0){
+            return;
+        }
+        if(this.energia + quantita <= 100){
+            this.energia += quantita;
         } else {
             this.energia = 100;
         }
