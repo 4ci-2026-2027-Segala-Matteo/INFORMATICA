@@ -1,0 +1,86 @@
+package Distributore;
+
+public class DistributoreBenzina
+{
+    private double deposito;
+    private double euroPerLitro;
+    
+    public DistributoreBenzina()
+    {
+        deposito = 0.0;
+        euroPerLitro = 0.0;
+    }
+    
+    public DistributoreBenzina(double prezzo)
+    {
+        deposito = 0.0;
+        if(prezzo > 0){
+            this.euroPerLitro = prezzo;
+        } else {
+            this.euroPerLitro = 0.0;
+        }
+    }
+    
+
+    public void rifornisci(double quantita)
+    {
+        if(quantita > 0){
+            this.deposito += quantita;
+        }
+    }
+    
+    public void vendi(double euro, Car unAutomobile)
+    {
+        if(euro <= 0 || this.euroPerLitro <= 0 || unAutomobile == null){
+            return;
+        }
+        
+        double litriRichiesti = euro / this.euroPerLitro;
+        
+        if(litriRichiesti <= this.deposito){
+            this.deposito -= litriRichiesti;
+            unAutomobile.addGas(litriRichiesti);
+        } else {
+            unAutomobile.addGas(this.deposito);
+            this.deposito = 0.0;
+        }
+    }
+    
+
+    public void aggiorna(double prezzo)
+    {
+        if(prezzo > 0){
+            this.euroPerLitro = prezzo;
+        } else {
+            this.euroPerLitro = 0.0;
+        }
+    }
+    
+    public void setDeposito(double m)
+    {
+        if(m > 0){
+            this.deposito = m;   
+        } else {
+            this.deposito = 0.0;
+        }
+    }
+    
+    public double getDeposito()
+    {
+        return this.deposito;
+    }
+
+    public double getEuroPerLitro()
+    {
+        return this.euroPerLitro;
+    }
+    
+    public String toString()
+    {
+        String out = "";
+        out += "Il deposito di benzina e': " + this.deposito + " litri";
+        out += "\nIl prezzo al litro e': " + this.euroPerLitro + " €";
+        return out;
+    }
+    
+}
