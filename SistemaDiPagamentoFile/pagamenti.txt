@@ -1,0 +1,4 @@
+Decathlon,89.90
+Gioielleria,750.00
+Netflix,15.99
+Bolletta Acqua,62.30
